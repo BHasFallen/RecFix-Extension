@@ -76,7 +76,7 @@ const Guide = () => {
                   <div className="flex flex-col sm:flex-row gap-4">
                     {selectedBrowser === 'chrome' ? (
                       <motion.a
-                        href="https://github.com/BobbyDXL/RecFix-Extension-Chrome/archive/refs/heads/main.zip"
+                        href="https://github.com/BHasFallen/RecFix-Extension/releases/download/v2.0.0/RecFix.Extension.v2.0.zip"
                         target="_blank"
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.02 }}
