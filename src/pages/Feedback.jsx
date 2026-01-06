@@ -6,7 +6,7 @@ import emailjs from '@emailjs/browser'
 const Feedback = () => {
   useEffect(() => {
     // Initialize EmailJS with your public key
-    emailjs.init("TX8jnM_Ze4KbnxT2J")
+    emailjs.init("8lWl3tKi1VtJme2I8")
   }, [])
 
   const [formData, setFormData] = useState({
@@ -29,8 +29,8 @@ const Feedback = () => {
     try {
       console.log('Sending feedback email...')
       await emailjs.send(
-        'service_1ucp4gh',
-        'template_gnuoh3b',
+        'service_wcbofq2',
+        'template_mi3klqc',
         {
           from_name: formData.name,
           from_email: formData.email,
@@ -60,7 +60,7 @@ const Feedback = () => {
             })
           }
         },
-        'TX8jnM_Ze4KbnxT2J'
+        '8lWl3tKi1VtJme2I8'
       )
 
       console.log('Feedback email sent successfully!')
