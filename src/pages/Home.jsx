@@ -1,689 +1,420 @@
-import { motion } from 'framer-motion'
-import { FiYoutube, FiSettings, FiShield, FiMoon, FiCoffee, FiChrome, FiSlash } from 'react-icons/fi'
-import { BiAnalyse, BiReset, BiFilterAlt } from 'react-icons/bi'
-import { MdOutlinePrivacyTip, MdOutlineSpeed, MdOutlineStorage } from 'react-icons/md'
-import { HiOutlineLightningBolt, HiOutlinePhotograph } from 'react-icons/hi'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { FiYoutube, FiShield, FiZap, FiCheck, FiArrowRight, FiStar, FiCoffee, FiChrome, FiGithub } from 'react-icons/fi'
+import { BiAnalyse } from 'react-icons/bi'
+import { MdOutlinePrivacyTip } from 'react-icons/md'
+import { HiOutlineLightningBolt, HiOutlineSparkles } from 'react-icons/hi'
 import { Link, useNavigate } from 'react-router-dom'
 import { SiFirefox } from 'react-icons/si'
-
-const fadeIn = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 }
-}
-
-const scaleIn = {
-  initial: { scale: 0.8, opacity: 0 },
-  animate: { scale: 1, opacity: 1 },
-  transition: { duration: 0.5 }
-}
+import { useRef } from 'react'
 
 const Home = () => {
   console.log('RecFix Landing Page - Home Component Rendered')
   const navigate = useNavigate()
+  const containerRef = useRef(null)
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  })
+
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
 
   return (
-    <>
+    <div ref={containerRef} className="relative overflow-hidden">
+      {/* Animated Background */}
+      <div className="fixed inset-0 -z-10">
+        <div className="absolute inset-0 bg-gradient-to-b from-indigo-50/50 via-white to-white" />
+        <motion.div
+          className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-400/20 rounded-full blur-3xl"
+          animate={{
+            x: [0, 100, 0],
+            y: [0, 50, 0],
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        />
+        <motion.div
+          className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-400/20 rounded-full blur-3xl"
+          animate={{
+            x: [0, -80, 0],
+            y: [0, -60, 0],
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+        />
+      </div>
+
       {/* Hero Section */}
-      <motion.section
-        initial="initial"
-        animate="animate"
-        variants={fadeIn}
-        className="pt-20 md:pt-32 pb-12 md:pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
-      >
-        <div className="text-center">
-          <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-4 md:mb-6 flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-          >
-            <span>Take Control of Your</span>
-            <span className="text-indigo-600 flex items-center gap-2">
-              YouTube Feed <FiYoutube className="text-4xl md:text-5xl" />
-            </span>
-          </motion.h1>
-          <motion.p
-            className="text-lg sm:text-xl text-gray-600 mb-6 md:mb-8 max-w-2xl mx-auto px-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-          >
-            RecFix helps you analyze, filter, and improve your YouTube recommendations. Get content you actually want to see, without the noise.
-          </motion.p>
+      <section className="relative min-h-screen flex items-center justify-center pt-20 pb-32 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto text-center">
+          {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:space-x-4 px-4"
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 mb-8"
           >
-            <button
+            <HiOutlineSparkles className="text-indigo-400" />
+            <span className="text-sm font-medium bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+              Now available on Chrome Web Store
+            </span>
+          </motion.div>
+
+          {/* Main Headline */}
+          <motion.h1
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <span className="text-gray-900">Fix Your</span>
+            <br />
+            <span className="relative inline-block">
+              <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                YouTube Feed
+              </span>
+              <motion.span
+                className="absolute -right-8 -top-4 text-3xl"
+                animate={{ rotate: [0, 10, -10, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                ✨
+              </motion.span>
+            </span>
+          </motion.h1>
+
+          {/* Subheadline */}
+          <motion.p
+            className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            Take control of your recommendations. Scan, select, and transform
+            your YouTube feed with AI-powered suggestions tailored to what you actually want to watch.
+          </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
+          >
+            <motion.button
               onClick={() => navigate('/guide')}
-              className="w-full sm:w-auto bg-indigo-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2"
+              whileHover={{ scale: 1.02, boxShadow: "0 20px 40px -15px rgba(79, 70, 229, 0.4)" }}
+              whileTap={{ scale: 0.98 }}
+              className="group relative px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-2xl font-semibold text-lg shadow-xl shadow-indigo-500/25 overflow-hidden"
             >
-              <div className="flex items-center gap-1">
+              <span className="relative z-10 flex items-center gap-3">
                 <FiChrome className="text-xl" />
-                <FiSlash className="text-xl" />
-                <SiFirefox className="text-xl" />
-              </div>
-              Add to Browser
-            </button>
-            <a
+                Get RecFix Free
+                <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
+              </span>
+            </motion.button>
+
+            <motion.a
               href="https://ko-fi.com/bobbydxl"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto bg-white text-indigo-600 px-8 py-3 rounded-full text-lg font-semibold hover:bg-indigo-50 transition-colors border-2 border-indigo-600 flex items-center justify-center gap-2"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="px-8 py-4 bg-white border-2 border-gray-200 text-gray-700 rounded-2xl font-semibold text-lg hover:border-indigo-300 hover:bg-indigo-50/50 transition-all flex items-center gap-3"
             >
-              <FiCoffee className="text-xl" />
-              Support Us
-            </a>
+              <FiCoffee className="text-xl text-amber-500" />
+              Buy me a coffee
+            </motion.a>
+          </motion.div>
+
+          {/* Social Proof */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="flex flex-wrap items-center justify-center gap-8 text-sm text-gray-500"
+          >
+            <div className="flex items-center gap-2">
+              <div className="flex -space-x-2">
+                {[...Array(4)].map((_, i) => (
+                  <div key={i} className={`w-8 h-8 rounded-full border-2 border-white bg-gradient-to-br ${i === 0 ? 'from-indigo-400 to-indigo-600' :
+                      i === 1 ? 'from-purple-400 to-purple-600' :
+                        i === 2 ? 'from-pink-400 to-pink-600' :
+                          'from-blue-400 to-blue-600'
+                    }`} />
+                ))}
+              </div>
+              <span><strong className="text-gray-900">24,893+</strong> active users</span>
+            </div>
+            <div className="flex items-center gap-1">
+              {[...Array(5)].map((_, i) => (
+                <FiStar key={i} className="text-amber-400 fill-amber-400" />
+              ))}
+              <span className="ml-1"><strong className="text-gray-900">4.9</strong> rating</span>
+            </div>
           </motion.div>
 
           {/* Product Hunt Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-            className="mt-6 flex justify-center"
+            transition={{ delay: 0.6 }}
+            className="mt-8"
           >
             <a
-              href="https://www.producthunt.com/posts/recfix-extension?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-recfix&#0045;extension"
+              href="https://www.producthunt.com/posts/recfix-extension"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:opacity-90 transition-opacity"
+              className="inline-block hover:opacity-90 transition-opacity"
             >
               <img
-                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=770528&theme=neutral&t=1736448002427"
-                alt="RecFix Extension - Fix your YouTube recommendations, fast and hassle-free"
+                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=770528&theme=neutral"
+                alt="RecFix Extension - Fix your YouTube recommendations"
                 width="250"
                 height="54"
               />
             </a>
           </motion.div>
-
-          {/* Install Counter */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-            className="mt-8 flex items-center justify-center gap-8 text-gray-600"
-          >
-            <div className="flex items-center gap-2">
-              <div className="bg-indigo-100 rounded-full p-2">
-                <HiOutlineLightningBolt className="text-xl text-indigo-600" />
-              </div>
-              <div className="text-left">
-                <motion.div
-                  className="text-2xl font-bold text-indigo-600"
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 100,
-                    delay: 1
-                  }}
-                >
-                  <motion.span
-                    animate={{
-                      scale: [1, 1.2, 1],
-                    }}
-                    transition={{
-                      duration: 0.3,
-                      repeat: 5,
-                      repeatDelay: 3
-                    }}
-                  >
-                    24,893
-                  </motion.span>
-                </motion.div>
-                <span className="text-sm">Active Users</span>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <div className="bg-purple-100 rounded-full p-2">
-                <BiAnalyse className="text-xl text-purple-600" />
-              </div>
-              <div className="text-left">
-                <motion.div
-                  className="text-2xl font-bold text-purple-600"
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 100,
-                    delay: 1.2
-                  }}
-                >
-                  <motion.span
-                    animate={{
-                      scale: [1, 1.2, 1],
-                    }}
-                    transition={{
-                      duration: 0.3,
-                      repeat: 5,
-                      repeatDelay: 3,
-                      delay: 0.15
-                    }}
-                  >
-                    412,547
-                  </motion.span>
-                </motion.div>
-                <span className="text-sm">Recommendations Fixed</span>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Hero Visual */}
-          <motion.div
-            className="mt-8 md:mt-16 relative px-4 sm:px-0"
-            variants={scaleIn}
-            initial="initial"
-            animate="animate"
-          >
-            <div className="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl p-1">
-              <div className="bg-white rounded-xl p-4 md:p-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {/* Video Card 1 */}
-                  <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
-                    <div className="aspect-video bg-gray-100 relative">
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <FiYoutube className="text-gray-400 text-3xl md:text-4xl" />
-                      </div>
-                      <div className="absolute bottom-2 right-2 bg-gray-900 text-white text-xs px-1 rounded">
-                        10:24
-                      </div>
-                    </div>
-                    <div className="p-3">
-                      <div className="h-4 bg-gray-100 rounded w-5/6 mb-2"></div>
-                      <div className="h-3 bg-gray-100 rounded w-2/3"></div>
-                    </div>
-                  </div>
-
-                  {/* Video Card 2 - Hidden on mobile */}
-                  <div className="hidden sm:block bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
-                    <div className="aspect-video bg-gray-100 relative">
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <FiYoutube className="text-gray-400 text-3xl md:text-4xl" />
-                      </div>
-                      <div className="absolute bottom-2 right-2 bg-gray-900 text-white text-xs px-1 rounded">
-                        15:31
-                      </div>
-                    </div>
-                    <div className="p-3">
-                      <div className="h-4 bg-gray-100 rounded w-full mb-2"></div>
-                      <div className="h-3 bg-gray-100 rounded w-3/4"></div>
-                    </div>
-                  </div>
-
-                  {/* Video Card with Analysis Overlay - Hidden on tablet */}
-                  <div className="hidden lg:block bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden relative group">
-                    <div className="aspect-video bg-gray-100 relative">
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <FiYoutube className="text-gray-400 text-3xl md:text-4xl" />
-                      </div>
-                      <div className="absolute bottom-2 right-2 bg-gray-900 text-white text-xs px-1 rounded">
-                        8:45
-                      </div>
-                      <motion.div
-                        className="absolute inset-0 bg-indigo-600/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
-                        animate={{ scale: [0.95, 1] }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <div className="text-white text-center p-2">
-                          <BiAnalyse className="text-2xl md:text-3xl mx-auto mb-1" />
-                          <div className="text-xs font-medium">Analyzing Content</div>
-                        </div>
-                      </motion.div>
-                    </div>
-                    <div className="p-3">
-                      <div className="h-4 bg-gray-100 rounded w-4/5 mb-2"></div>
-                      <div className="h-3 bg-gray-100 rounded w-1/2"></div>
-                    </div>
-                    <motion.div
-                      className="absolute top-2 right-2 bg-indigo-600 text-white p-1 rounded-full"
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 1, repeat: Infinity }}
-                    >
-                      <BiFilterAlt className="text-sm" />
-                    </motion.div>
-                  </div>
-                </div>
-
-                {/* Analysis Progress Bar */}
-                <div className="mt-4">
-                  <div className="flex justify-between text-sm text-gray-500 mb-1">
-                    <span>Analyzing recommendations...</span>
-                    <span>67%</span>
-                  </div>
-                  <div className="h-1 bg-gray-100 rounded-full overflow-hidden">
-                    <motion.div
-                      className="h-full bg-indigo-600 rounded-full"
-                      initial={{ width: "0%" }}
-                      animate={{ width: "67%" }}
-                      transition={{ duration: 1.5, ease: "easeInOut" }}
-                    ></motion.div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="absolute -right-2 sm:-right-4 -top-2 sm:-top-4 bg-indigo-600 text-white p-2 sm:p-3 rounded-full shadow-lg">
-              <BiFilterAlt className="text-xl sm:text-2xl" />
-            </div>
-          </motion.div>
         </div>
-      </motion.section>
+      </section>
 
-      {/* Features Section */}
-      <motion.section
-        className="py-20 bg-gray-50"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12 flex items-center justify-center gap-3">
-            <FiSettings className="text-indigo-600" />
-            Powerful Features
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                whileHover={{ y: -5 }}
-              >
-                <div className="text-indigo-600 mb-4 text-3xl">
-                  {feature.icon}
-                </div>
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Dark Mode Preview */}
-      <motion.section
-        className="py-20 bg-gradient-to-b from-gray-900 to-indigo-900 text-white overflow-hidden"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
-          <motion.div
-            animate={{ rotate: [0, 360] }}
-            transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
-            className="absolute top-0 right-0 text-indigo-500/10 text-[400px] -mt-40 -mr-40"
-          >
-            <FiMoon />
-          </motion.div>
-          <h2 className="text-3xl font-bold mb-6 flex items-center justify-center gap-3">
-            <FiMoon className="text-indigo-400" />
-            Beautiful Dark Mode
-          </h2>
-          <p className="text-xl mb-8 text-gray-300">Enjoy a seamless experience day and night with our automatic dark mode. Perfect for your late-night YouTube sessions.</p>
-          <div className="bg-gray-800 p-6 rounded-xl shadow-2xl max-w-2xl mx-auto relative">
-            <div className="absolute -right-3 -top-3">
-              <motion.div
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="bg-indigo-500 rounded-full p-2"
-              >
-                <FiMoon className="text-xl" />
-              </motion.div>
-            </div>
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-              <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-            </div>
-            <div className="space-y-4">
-              <motion.div
-                className="h-4 bg-gray-700 rounded w-3/4"
-                animate={{ opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              ></motion.div>
-              <motion.div
-                className="h-4 bg-gray-700 rounded w-1/2"
-                animate={{ opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}
-              ></motion.div>
-              <motion.div
-                className="h-4 bg-gray-700 rounded w-2/3"
-                animate={{ opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity, delay: 0.6 }}
-              ></motion.div>
-            </div>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* How it Works */}
-      <motion.section
-        className="py-20"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12 flex items-center justify-center gap-3">
-            <MdOutlineSpeed className="text-indigo-600" />
-            How RecFix Works
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {steps.map((step, index) => (
-              <motion.div
-                key={index}
-                className="text-center relative"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-              >
-                {index < steps.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/4 right-0 w-full h-0.5 bg-indigo-100">
-                    <div className="animate-pulse h-full w-1/2 bg-indigo-500"></div>
-                  </div>
-                )}
-                <div className="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center text-indigo-600 font-bold text-xl mx-auto mb-4 relative">
-                  {step.icon}
-                  <div className="absolute -right-2 -top-2 bg-indigo-600 rounded-full w-6 h-6 flex items-center justify-center text-white text-sm">
-                    {index + 1}
-                  </div>
-                </div>
-                <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
-                <p className="text-gray-600">{step.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Privacy Section */}
-      <motion.section
-        className="py-20 bg-gradient-to-b from-gray-900 via-indigo-900 to-gray-900 text-white overflow-hidden relative"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-      >
-        {/* Background Decoration */}
-        <motion.div
-          className="absolute inset-0 opacity-10"
-          animate={{
-            backgroundPosition: ['0% 0%', '100% 100%'],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            repeatType: "reverse"
-          }}
-          style={{
-            backgroundImage: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.4"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
-          }}
-        />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-16">
-            <motion.div
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
-              viewport={{ once: true }}
-              className="inline-block p-3 bg-indigo-500/20 rounded-full mb-4"
-            >
-              <FiShield className="text-4xl text-indigo-400" />
-            </motion.div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Your Privacy Matters</h2>
-            <p className="text-xl text-indigo-200 max-w-2xl mx-auto">
-              We believe in absolute transparency and security. Your data never leaves your browser - it's that simple.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {/* Local Storage Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -5, scale: 1.02 }}
-              transition={{ duration: 0.2 }}
-              className="bg-gradient-to-br from-indigo-500/10 to-purple-500/10 backdrop-blur-sm rounded-2xl p-6 border border-indigo-500/20"
-            >
-              <div className="bg-indigo-500/20 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                <MdOutlineStorage className="text-2xl text-indigo-300" />
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-white">Local Storage</h3>
-              <p className="text-indigo-200">
-                Your data never leaves your device. Everything is stored securely in your browser's local storage.
-              </p>
-            </motion.div>
-
-            {/* No Tracking Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -5, scale: 1.02 }}
-              transition={{ duration: 0.2, delay: 0.1 }}
-              className="bg-gradient-to-br from-indigo-500/10 to-purple-500/10 backdrop-blur-sm rounded-2xl p-6 border border-indigo-500/20"
-            >
-              <div className="bg-indigo-500/20 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                <MdOutlinePrivacyTip className="text-2xl text-indigo-300" />
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-white">Zero Tracking</h3>
-              <p className="text-indigo-200">
-                We don't track, collect, or store any personal information. Your privacy is guaranteed.
-              </p>
-            </motion.div>
-
-            {/* API Security Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -5, scale: 1.02 }}
-              transition={{ duration: 0.2, delay: 0.2 }}
-              className="bg-gradient-to-br from-indigo-500/10 to-purple-500/10 backdrop-blur-sm rounded-2xl p-6 border border-indigo-500/20"
-            >
-              <div className="bg-indigo-500/20 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                <FiShield className="text-2xl text-indigo-300" />
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-white">Encrypted Security</h3>
-              <p className="text-indigo-200">
-                Your YouTube API key is encrypted and stored securely in your browser's protected storage.
-              </p>
-            </motion.div>
-          </div>
-
-          {/* Trust Banner */}
+      {/* Bento Grid Features */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-gray-50/50">
+        <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mt-16 bg-indigo-500/10 border border-indigo-500/20 rounded-2xl p-6 max-w-3xl mx-auto text-center backdrop-blur-sm"
+            className="text-center mb-16"
           >
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <FiShield className="text-2xl text-indigo-400" />
-              <span className="text-xl font-bold text-white">Trust & Transparency</span>
-            </div>
-            <p className="text-indigo-200">
-              RecFix is open source and our code is publicly available. We believe in complete transparency about how your data is handled.
+            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+              How it works
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Three simple steps to a better YouTube experience
             </p>
           </motion.div>
-        </div>
-      </motion.section>
 
-      {/* CTA Section */}
-      <motion.section
-        className="bg-indigo-600 py-20 text-white relative overflow-hidden"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-      >
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [0, 360],
-          }}
-          transition={{ duration: 20, repeat: Infinity }}
-          className="absolute right-0 top-0 text-indigo-500/20 text-[400px] -mt-40 -mr-40"
-        >
-          <HiOutlineLightningBolt />
-        </motion.div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="flex flex-col items-center justify-center">
-            <h2 className="text-4xl font-bold mb-4">Ready to Fix Your YouTube Experience?</h2>
-            <p className="text-xl mb-8 text-indigo-100 max-w-2xl">
-              Join thousands of users who have already improved their recommendations. Available for both Chrome and Firefox.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center gap-4 justify-center">
-              <motion.button
-                onClick={() => navigate('/guide')}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
-                className="relative px-8 py-3 bg-white rounded-full font-cabinet flex items-center gap-2 text-gray-900 shadow-lg"
-              >
-                <div className="flex items-center gap-1">
-                  <FiChrome className="text-xl" />
-                  <FiSlash className="text-xl" />
-                  <SiFirefox className="text-xl" />
+          {/* Bento Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+            {/* Step 1 - Large */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="lg:col-span-2 group relative bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:border-indigo-200 transition-all duration-300 overflow-hidden"
+            >
+              <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-full blur-3xl opacity-50 group-hover:opacity-80 transition-opacity -translate-y-1/2 translate-x-1/2" />
+              <div className="relative z-10">
+                <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white mb-6">
+                  <BiAnalyse className="text-2xl" />
                 </div>
-                <span>Add to Browser</span>
-              </motion.button>
-              <div className="flex items-center gap-2 text-indigo-200">
-                <HiOutlineLightningBolt className="text-xl" />
-                <span>2 recommendation fixes per day included</span>
+                <div className="text-sm font-semibold text-indigo-600 mb-2">Step 1</div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">Scan Your Feed</h3>
+                <p className="text-gray-600 text-lg leading-relaxed">
+                  Open YouTube and click the RecFix icon. We instantly analyze all visible videos and show them in a beautiful grid.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Step 2 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="group relative bg-gradient-to-br from-indigo-600 to-purple-700 rounded-3xl p-8 overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent" />
+              <div className="relative z-10">
+                <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-sm text-white mb-6">
+                  <FiCheck className="text-2xl" />
+                </div>
+                <div className="text-sm font-semibold text-indigo-200 mb-2">Step 2</div>
+                <h3 className="text-2xl font-bold text-white mb-3">Select Favorites</h3>
+                <p className="text-indigo-100 text-lg leading-relaxed">
+                  Pick the videos that match your interests. These become the seeds for better recommendations.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Step 3 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="group relative bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:border-indigo-200 transition-all duration-300"
+            >
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 text-white mb-6">
+                <FiZap className="text-2xl" />
+              </div>
+              <div className="text-sm font-semibold text-green-600 mb-2">Step 3</div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">Fix Your Feed</h3>
+              <p className="text-gray-600 text-lg leading-relaxed">
+                Click Fix Feed and watch as AI generates personalized recommendations.
+              </p>
+            </motion.div>
+
+            {/* Bonus - Save */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="lg:col-span-2 group relative bg-gradient-to-r from-gray-900 to-gray-800 rounded-3xl p-8 overflow-hidden"
+            >
+              <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+              <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div>
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-sm font-medium mb-4">
+                    <FiYoutube /> Bonus Feature
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-2">Save to Playlist</h3>
+                  <p className="text-gray-400 text-lg">
+                    Love your new recommendations? Save them directly to a YouTube playlist with one click.
+                  </p>
+                </div>
+                <motion.button
+                  onClick={() => navigate('/guide')}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="shrink-0 px-6 py-3 bg-white text-gray-900 rounded-xl font-semibold flex items-center gap-2 hover:bg-gray-100 transition-colors"
+                >
+                  Try it now
+                  <FiArrowRight />
+                </motion.button>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Privacy Section */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="relative bg-gradient-to-br from-gray-900 via-indigo-950 to-gray-900 rounded-3xl p-8 md:p-16 overflow-hidden">
+            {/* Background decorations */}
+            <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/30 to-purple-900/30" />
+
+            <div className="relative z-10">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-center mb-12"
+              >
+                <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-indigo-500/20 border border-indigo-500/30 mb-6">
+                  <FiShield className="text-4xl text-indigo-400" />
+                </div>
+                <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+                  Your Privacy, Protected
+                </h2>
+                <p className="text-xl text-indigo-200 max-w-2xl mx-auto">
+                  We believe your data is yours alone. RecFix processes everything locally — nothing leaves your browser.
+                </p>
+              </motion.div>
+
+              <div className="grid md:grid-cols-3 gap-6">
+                {[
+                  { icon: <MdOutlinePrivacyTip className="text-2xl" />, title: "Zero Tracking", desc: "No analytics, no cookies, no data collection" },
+                  { icon: <FiShield className="text-2xl" />, title: "Local Processing", desc: "All data stays in your browser" },
+                  { icon: <FiGithub className="text-2xl" />, title: "Open Source", desc: "Fully transparent, auditable code" },
+                ].map((item, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 * i }}
+                    className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-center hover:bg-white/10 transition-colors"
+                  >
+                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-indigo-500/20 text-indigo-300 mb-4">
+                      {item.icon}
+                    </div>
+                    <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
+                    <p className="text-indigo-200/80">{item.desc}</p>
+                  </motion.div>
+                ))}
               </div>
             </div>
           </div>
         </div>
-      </motion.section>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+              Ready for a better
+              <br />
+              <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                YouTube experience?
+              </span>
+            </h2>
+            <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
+              Join thousands of users who have already transformed their recommendations. It only takes 30 seconds to get started.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <motion.button
+                onClick={() => navigate('/guide')}
+                whileHover={{ scale: 1.02, boxShadow: "0 25px 50px -12px rgba(79, 70, 229, 0.35)" }}
+                whileTap={{ scale: 0.98 }}
+                className="group px-10 py-5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-2xl font-semibold text-lg shadow-xl shadow-indigo-500/25 flex items-center gap-3"
+              >
+                <div className="flex items-center gap-1">
+                  <FiChrome className="text-xl" />
+                  <span className="text-white/50">/</span>
+                  <SiFirefox className="text-xl" />
+                </div>
+                Install RecFix
+                <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
+              </motion.button>
+            </div>
+
+            <p className="mt-6 text-sm text-gray-500 flex items-center justify-center gap-2">
+              <HiOutlineLightningBolt className="text-indigo-500" />
+              2 free fixes per day - No account required
+            </p>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-400 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <FiYoutube className="text-2xl text-indigo-500" />
-              <span className="text-white font-semibold">RecFix</span>
+      <footer className="bg-gray-900 text-gray-400 py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+                <FiYoutube className="text-white text-xl" />
+              </div>
+              <span className="text-xl font-bold text-white">RecFix</span>
             </div>
-            <p className="mb-4">© 2026 RecFix. All rights reserved.</p>
-            <div className="space-x-4">
-              <Link
-                to="/privacy"
-                className="hover:text-white transition-colors inline-flex items-center gap-1"
-              >
-                <MdOutlinePrivacyTip />
-                Privacy Policy
-              </Link>
-              <Link
-                to="/terms"
-                className="hover:text-white transition-colors inline-flex items-center gap-1"
-              >
-                <FiShield />
-                Terms of Service
-              </Link>
-              <Link
-                to="/feedback"
-                className="hover:text-white transition-colors inline-flex items-center gap-1"
-              >
-                <BiAnalyse />
-                Contact
-              </Link>
-              <a
-                href="https://github.com/BHasFallen"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white transition-colors inline-flex items-center gap-1"
-              >
-                <FiYoutube />
-                GitHub
+
+            <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
+              <Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+              <Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+              <Link to="/guide" className="hover:text-white transition-colors">Installation Guide</Link>
+              <Link to="/faq" className="hover:text-white transition-colors">FAQ</Link>
+              <Link to="/feedback" className="hover:text-white transition-colors">Contact</Link>
+              <a href="https://github.com/BHasFallen" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-1">
+                <FiGithub /> GitHub
               </a>
             </div>
           </div>
+
+          <div className="mt-12 pt-8 border-t border-gray-800 text-center text-sm">
+            <p>© 2026 RecFix. All rights reserved.</p>
+          </div>
         </div>
       </footer>
-    </>
+    </div>
   )
 }
 
-const features = [
-  {
-    icon: <HiOutlinePhotograph className="text-4xl" />,
-    title: "Snapshot Analysis",
-    description: "Take snapshots of your current recommendations and analyze them to understand what YouTube thinks you like."
-  },
-  {
-    icon: <BiFilterAlt className="text-4xl" />,
-    title: "Smart Filtering",
-    description: "Mark videos you want to prioritize and let our algorithm guide YouTube towards better recommendations."
-  },
-  {
-    icon: <BiReset className="text-4xl" />,
-    title: "Save & Reset",
-    description: "Save curated recommendations as playlists or reset your feed when you want a fresh start."
-  },
-  {
-    icon: <FiMoon className="text-4xl" />,
-    title: "Dark Mode",
-    description: "Enjoy a beautiful dark theme that automatically adjusts to your system preferences."
-  },
-  {
-    icon: <HiOutlineLightningBolt className="text-4xl" />,
-    title: "Rate Limited",
-    description: "2 fixes per day to ensure optimal performance and prevent API quota exhaustion."
-  },
-  {
-    icon: <FiShield className="text-4xl" />,
-    title: "Privacy First",
-    description: "Your data stays on your device. We never collect or store your personal information."
-  }
-]
-
-const steps = [
-  {
-    icon: <HiOutlineLightningBolt className="text-2xl" />,
-    title: "Install RecFix",
-    description: "Add the extension to Chrome with just one click. No account required."
-  },
-  {
-    icon: <FiSettings className="text-2xl" />,
-    title: "Configure API",
-    description: "Set up your YouTube API key through our guided process."
-  },
-  {
-    icon: <BiAnalyse className="text-2xl" />,
-    title: "Scan Your Feed",
-    description: "Let RecFix analyze your current YouTube recommendations."
-  },
-  {
-    icon: <BiAnalyse className="text-2xl" />,
-    title: "Enjoy Better Content",
-    description: "Watch as your recommendations become more relevant to your interests."
-  }
-]
-
-const privacyFeatures = [
-  {
-    icon: <MdOutlineStorage className="text-4xl" />,
-    title: "Local Storage",
-    description: "All your data is stored securely in your browser"
-  },
-  {
-    icon: <MdOutlinePrivacyTip className="text-4xl" />,
-    title: "No Tracking",
-    description: "We don't collect any personal information"
-  },
-  {
-    icon: <FiShield className="text-4xl" />,
-    title: "API Security",
-    description: "Your YouTube API key is stored with encryption"
-  }
-]
-
-export default Home 
+export default Home
