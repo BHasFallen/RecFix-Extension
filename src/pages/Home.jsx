@@ -25,14 +25,14 @@ const Home = () => {
   return (
     <>
       {/* Hero Section */}
-      <motion.section 
+      <motion.section
         initial="initial"
         animate="animate"
         variants={fadeIn}
         className="pt-20 md:pt-32 pb-12 md:pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
       >
         <div className="text-center">
-          <motion.h1 
+          <motion.h1
             className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-4 md:mb-6 flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -43,7 +43,7 @@ const Home = () => {
               YouTube Feed <FiYoutube className="text-4xl md:text-5xl" />
             </span>
           </motion.h1>
-          <motion.p 
+          <motion.p
             className="text-lg sm:text-xl text-gray-600 mb-6 md:mb-8 max-w-2xl mx-auto px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -57,7 +57,7 @@ const Home = () => {
             transition={{ delay: 0.6 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:space-x-4 px-4"
           >
-            <button 
+            <button
               onClick={() => navigate('/guide')}
               className="w-full sm:w-auto bg-indigo-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2"
             >
@@ -68,9 +68,9 @@ const Home = () => {
               </div>
               Add to Browser
             </button>
-            <a 
-              href="https://ko-fi.com/bobbydxl" 
-              target="_blank" 
+            <a
+              href="https://ko-fi.com/bobbydxl"
+              target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto bg-white text-indigo-600 px-8 py-3 rounded-full text-lg font-semibold hover:bg-indigo-50 transition-colors border-2 border-indigo-600 flex items-center justify-center gap-2"
             >
@@ -86,17 +86,17 @@ const Home = () => {
             transition={{ delay: 0.8 }}
             className="mt-6 flex justify-center"
           >
-            <a 
-              href="https://www.producthunt.com/posts/recfix-extension?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-recfix&#0045;extension" 
-              target="_blank" 
+            <a
+              href="https://www.producthunt.com/posts/recfix-extension?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-recfix&#0045;extension"
+              target="_blank"
               rel="noopener noreferrer"
               className="hover:opacity-90 transition-opacity"
             >
-              <img 
-                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=770528&theme=neutral&t=1736448002427" 
-                alt="RecFix Extension - Fix your YouTube recommendations, fast and hassle-free" 
-                width="250" 
-                height="54" 
+              <img
+                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=770528&theme=neutral&t=1736448002427"
+                alt="RecFix Extension - Fix your YouTube recommendations, fast and hassle-free"
+                width="250"
+                height="54"
               />
             </a>
           </motion.div>
@@ -113,27 +113,27 @@ const Home = () => {
                 <HiOutlineLightningBolt className="text-xl text-indigo-600" />
               </div>
               <div className="text-left">
-                <motion.div 
+                <motion.div
                   className="text-2xl font-bold text-indigo-600"
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ 
+                  transition={{
                     type: "spring",
                     stiffness: 100,
                     delay: 1
                   }}
                 >
                   <motion.span
-                    animate={{ 
+                    animate={{
                       scale: [1, 1.2, 1],
                     }}
-                    transition={{ 
+                    transition={{
                       duration: 0.3,
                       repeat: 5,
                       repeatDelay: 3
                     }}
                   >
-                    10,547
+                    24,893
                   </motion.span>
                 </motion.div>
                 <span className="text-sm">Active Users</span>
@@ -145,37 +145,37 @@ const Home = () => {
                 <BiAnalyse className="text-xl text-purple-600" />
               </div>
               <div className="text-left">
-                <motion.div 
+                <motion.div
                   className="text-2xl font-bold text-purple-600"
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ 
+                  transition={{
                     type: "spring",
                     stiffness: 100,
                     delay: 1.2
                   }}
                 >
                   <motion.span
-                    animate={{ 
+                    animate={{
                       scale: [1, 1.2, 1],
                     }}
-                    transition={{ 
+                    transition={{
                       duration: 0.3,
                       repeat: 5,
                       repeatDelay: 3,
                       delay: 0.15
                     }}
                   >
-                    156,832
+                    412,547
                   </motion.span>
                 </motion.div>
                 <span className="text-sm">Recommendations Fixed</span>
               </div>
             </div>
           </motion.div>
-        
+
           {/* Hero Visual */}
-          <motion.div 
+          <motion.div
             className="mt-8 md:mt-16 relative px-4 sm:px-0"
             variants={scaleIn}
             initial="initial"
@@ -225,7 +225,7 @@ const Home = () => {
                       <div className="absolute bottom-2 right-2 bg-gray-900 text-white text-xs px-1 rounded">
                         8:45
                       </div>
-                      <motion.div 
+                      <motion.div
                         className="absolute inset-0 bg-indigo-600/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
                         animate={{ scale: [0.95, 1] }}
                         transition={{ duration: 0.2 }}
@@ -240,7 +240,7 @@ const Home = () => {
                       <div className="h-4 bg-gray-100 rounded w-4/5 mb-2"></div>
                       <div className="h-3 bg-gray-100 rounded w-1/2"></div>
                     </div>
-                    <motion.div 
+                    <motion.div
                       className="absolute top-2 right-2 bg-indigo-600 text-white p-1 rounded-full"
                       animate={{ scale: [1, 1.2, 1] }}
                       transition={{ duration: 1, repeat: Infinity }}
@@ -257,7 +257,7 @@ const Home = () => {
                     <span>67%</span>
                   </div>
                   <div className="h-1 bg-gray-100 rounded-full overflow-hidden">
-                    <motion.div 
+                    <motion.div
                       className="h-full bg-indigo-600 rounded-full"
                       initial={{ width: "0%" }}
                       animate={{ width: "67%" }}
@@ -275,7 +275,7 @@ const Home = () => {
       </motion.section>
 
       {/* Features Section */}
-      <motion.section 
+      <motion.section
         className="py-20 bg-gray-50"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -309,7 +309,7 @@ const Home = () => {
       </motion.section>
 
       {/* Dark Mode Preview */}
-      <motion.section 
+      <motion.section
         className="py-20 bg-gradient-to-b from-gray-900 to-indigo-900 text-white overflow-hidden"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -344,17 +344,17 @@ const Home = () => {
               <div className="w-3 h-3 bg-green-500 rounded-full"></div>
             </div>
             <div className="space-y-4">
-              <motion.div 
+              <motion.div
                 className="h-4 bg-gray-700 rounded w-3/4"
                 animate={{ opacity: [0.5, 1, 0.5] }}
                 transition={{ duration: 2, repeat: Infinity }}
               ></motion.div>
-              <motion.div 
+              <motion.div
                 className="h-4 bg-gray-700 rounded w-1/2"
                 animate={{ opacity: [0.5, 1, 0.5] }}
                 transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}
               ></motion.div>
-              <motion.div 
+              <motion.div
                 className="h-4 bg-gray-700 rounded w-2/3"
                 animate={{ opacity: [0.5, 1, 0.5] }}
                 transition={{ duration: 2, repeat: Infinity, delay: 0.6 }}
@@ -365,7 +365,7 @@ const Home = () => {
       </motion.section>
 
       {/* How it Works */}
-      <motion.section 
+      <motion.section
         className="py-20"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -406,19 +406,19 @@ const Home = () => {
       </motion.section>
 
       {/* Privacy Section */}
-      <motion.section 
+      <motion.section
         className="py-20 bg-gradient-to-b from-gray-900 via-indigo-900 to-gray-900 text-white overflow-hidden relative"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
       >
         {/* Background Decoration */}
-        <motion.div 
+        <motion.div
           className="absolute inset-0 opacity-10"
-          animate={{ 
+          animate={{
             backgroundPosition: ['0% 0%', '100% 100%'],
           }}
-          transition={{ 
+          transition={{
             duration: 20,
             repeat: Infinity,
             repeatType: "reverse"
@@ -427,7 +427,7 @@ const Home = () => {
             backgroundImage: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.4"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
           }}
         />
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <motion.div
@@ -519,14 +519,14 @@ const Home = () => {
       </motion.section>
 
       {/* CTA Section */}
-      <motion.section 
+      <motion.section
         className="bg-indigo-600 py-20 text-white relative overflow-hidden"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
       >
         <motion.div
-          animate={{ 
+          animate={{
             scale: [1, 1.2, 1],
             rotate: [0, 360],
           }}
@@ -572,33 +572,33 @@ const Home = () => {
               <FiYoutube className="text-2xl text-indigo-500" />
               <span className="text-white font-semibold">RecFix</span>
             </div>
-            <p className="mb-4">© 2025 RecFix. All rights reserved.</p>
+            <p className="mb-4">© 2026 RecFix. All rights reserved.</p>
             <div className="space-x-4">
-              <Link 
-                to="/privacy" 
+              <Link
+                to="/privacy"
                 className="hover:text-white transition-colors inline-flex items-center gap-1"
               >
                 <MdOutlinePrivacyTip />
                 Privacy Policy
               </Link>
-              <Link 
-                to="/terms" 
+              <Link
+                to="/terms"
                 className="hover:text-white transition-colors inline-flex items-center gap-1"
               >
                 <FiShield />
                 Terms of Service
               </Link>
-              <Link 
-                to="/feedback" 
+              <Link
+                to="/feedback"
                 className="hover:text-white transition-colors inline-flex items-center gap-1"
               >
                 <BiAnalyse />
                 Contact
               </Link>
-              <a 
-                href="https://github.com/BobbyDXL/RecExtension-Updated/tree/v1.2" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://github.com/BHasFallen"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hover:text-white transition-colors inline-flex items-center gap-1"
               >
                 <FiYoutube />

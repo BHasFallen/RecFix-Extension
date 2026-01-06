@@ -25,7 +25,7 @@ const Feedback = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setStatus({ submitting: true, submitted: false, error: null })
-    
+
     try {
       console.log('Sending feedback email...')
       await emailjs.send(
@@ -38,9 +38,9 @@ const Feedback = () => {
           category: formData.category,
           message: formData.message,
           subject: `RecFix Feedback: ${formData.category} from ${formData.name}`,
-          date: new Date().toLocaleDateString('en-US', { 
-            year: 'numeric', 
-            month: 'long', 
+          date: new Date().toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
             day: 'numeric',
             hour: '2-digit',
             minute: '2-digit'
@@ -51,9 +51,9 @@ const Feedback = () => {
             reply_to: formData.email,
             category: formData.category,
             message: formData.message,
-            date: new Date().toLocaleDateString('en-US', { 
-              year: 'numeric', 
-              month: 'long', 
+            date: new Date().toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
               day: 'numeric',
               hour: '2-digit',
               minute: '2-digit'
@@ -62,7 +62,7 @@ const Feedback = () => {
         },
         'TX8jnM_Ze4KbnxT2J'
       )
-      
+
       console.log('Feedback email sent successfully!')
       setStatus({ submitting: false, submitted: true, error: null })
       setFormData({
@@ -90,7 +90,7 @@ const Feedback = () => {
       icon: <FiGithub className="text-2xl text-indigo-600" />,
       title: "GitHub Issues",
       description: "Report bugs or request features through our GitHub repository",
-      link: "https://github.com/BobbyDXL/RecFix-Extension/issues/new"
+      link: "https://github.com/BHasFallen/RecFix-Extension-Chrome/issues/new"
     },
     {
       icon: <FiMessageCircle className="text-2xl text-indigo-600" />,
@@ -229,9 +229,8 @@ const Feedback = () => {
               type="submit"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className={`bg-indigo-600 text-white px-8 py-3 rounded-full hover:bg-indigo-700 transition-colors inline-flex items-center gap-2 ${
-                status.submitting ? 'opacity-50 cursor-not-allowed' : ''
-              }`}
+              className={`bg-indigo-600 text-white px-8 py-3 rounded-full hover:bg-indigo-700 transition-colors inline-flex items-center gap-2 ${status.submitting ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
               disabled={status.submitting}
             >
               <FiSend />

@@ -20,7 +20,7 @@ const Terms = () => {
           <FiFileText className="text-4xl text-indigo-600" />
         </motion.div>
         <h1 className="text-4xl font-bold text-gray-900 mb-4">Terms of Service</h1>
-        <p className="text-lg text-gray-600">Last updated: February 2024</p>
+        <p className="text-lg text-gray-600">Last updated: January 2026</p>
       </div>
 
       <div className="prose prose-lg max-w-none">
@@ -122,8 +122,8 @@ const Terms = () => {
           </p>
           <div className="bg-gray-50 rounded-xl p-6">
             <ul className="text-gray-600 space-y-2">
-              <li>Email: do941567@gmail.com</li>
-              <li>GitHub: github.com/BobbyDXL</li>
+              <li>Email: recfixyt@gmail.com</li>
+              <li>GitHub: github.com/BHasFallen</li>
             </ul>
           </div>
         </section>

@@ -21,22 +21,20 @@ const Guide = () => {
         <div className="flex justify-center gap-4 mb-12">
           <button
             onClick={() => setSelectedBrowser('chrome')}
-            className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-colors ${
-              selectedBrowser === 'chrome'
+            className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-colors ${selectedBrowser === 'chrome'
                 ? 'bg-indigo-600 text-white'
                 : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-            }`}
+              }`}
           >
             <FiChrome className="text-xl" />
             Chrome
           </button>
           <button
             onClick={() => setSelectedBrowser('firefox')}
-            className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-colors ${
-              selectedBrowser === 'firefox'
+            className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-colors ${selectedBrowser === 'firefox'
                 ? 'bg-indigo-600 text-white'
                 : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-            }`}
+              }`}
           >
             <SiFirefox className="text-xl" />
             Firefox
@@ -61,12 +59,12 @@ const Guide = () => {
                   <h2 className="text-xl font-semibold mb-4">1. Download RecFix</h2>
                   <p className="text-gray-600 mb-6">
                     Click the download button below or visit our {" "}
-                    <a 
-                      href={selectedBrowser === 'chrome' 
-                        ? "https://github.com/BobbyDXL/RecFix-Extension-Chrome"
-                        : "https://github.com/BobbyDXL/RecFix-Extension-Firefox"} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
+                    <a
+                      href={selectedBrowser === 'chrome'
+                        ? "https://github.com/BHasFallen/RecFix-Extension-Chrome"
+                        : "https://github.com/BHasFallen/RecFix-Extension-Firefox"}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-indigo-600 hover:text-indigo-500"
                     >
                       {selectedBrowser === 'chrome' ? "Chrome" : "Firefox"} repository
@@ -88,7 +86,7 @@ const Guide = () => {
                       </motion.a>
                     ) : (
                       <motion.a
-                        href="https://github.com/BobbyDXL/RecFix-Extension-Firefox/archive/refs/heads/main.zip"
+                        href="https://github.com/BHasFallen/RecFix-Extension-Firefox/archive/refs/heads/main.zip"
                         target="_blank"
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.02 }}
