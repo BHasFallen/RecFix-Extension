@@ -100,7 +100,7 @@ const Guide = () => {
                 <div className="flex flex-wrap gap-4">
                   {selectedBrowser === 'chrome' ? (
                     <motion.a
-                      href="https://github.com/BHasFallen/RecFix-Extension/releases/download/v2.0.0/RecFix.Extension.v2.0.zip"
+                      href="https://chromewebstore.google.com/detail/recfix/eicddedljgibgkpnbmfimmicdndhlpna"
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.02 }}
@@ -108,7 +108,7 @@ const Guide = () => {
                       className="px-6 py-3 rounded-xl inline-flex items-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold shadow-lg shadow-indigo-500/25 hover:shadow-xl transition-shadow"
                     >
                       <FiChrome className="text-xl" />
-                      Download for Chrome
+                      Add to Chrome - It's Free
                       <FiArrowRight />
                     </motion.a>
                   ) : (
