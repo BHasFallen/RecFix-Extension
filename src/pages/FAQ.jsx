@@ -12,12 +12,16 @@ const FAQ = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-indigo-50/30 via-white to-white">
-      {/* Hero Section */}
-      <div className="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-400/20 rounded-full blur-3xl" />
-        <div className="absolute top-20 right-1/4 w-64 h-64 bg-purple-400/20 rounded-full blur-3xl" />
+    <div className="min-h-screen bg-gradient-to-b from-indigo-50/30 via-white to-white relative overflow-hidden">
+      {/* Optimized Background */}
+      <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-indigo-50/50 via-white to-white" />
+        <div className="absolute top-[-10%] left-[10%] w-[30rem] h-[30rem] bg-indigo-200/20 rounded-full blur-[100px]" />
+        <div className="absolute bottom-[-10%] right-[10%] w-[25rem] h-[25rem] bg-purple-200/20 rounded-full blur-[100px]" />
+      </div>
 
+      {/* Hero Section */}
+      <div className="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -46,31 +50,32 @@ const FAQ = () => {
         </div>
       </div>
 
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 relative z-10">
         <div className="space-y-4">
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: index * 0.05 }}
-              className={`bg-white rounded-2xl border transition-all overflow-hidden ${openIndex === index
-                  ? 'border-indigo-200 shadow-lg shadow-indigo-100'
-                  : 'border-gray-100 hover:border-gray-200'
+              className={`bg-white rounded-2xl border transition-all duration-300 overflow-hidden ${openIndex === index
+                ? 'border-indigo-200 shadow-lg shadow-indigo-100'
+                : 'border-gray-100 hover:border-gray-200'
                 }`}
+              style={{ willChange: "transform, opacity" }}
             >
               <button
                 className="w-full px-6 py-5 text-left flex items-center justify-between gap-4 focus:outline-none"
                 onClick={() => toggleQuestion(index)}
               >
-                <span className={`font-semibold transition-colors ${openIndex === index ? 'text-indigo-600' : 'text-gray-900'
+                <span className={`font-semibold transition-colors duration-200 ${openIndex === index ? 'text-indigo-600' : 'text-gray-900'
                   }`}>
                   {faq.question}
                 </span>
-                <div className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${openIndex === index
-                    ? 'bg-indigo-100 text-indigo-600'
-                    : 'bg-gray-100 text-gray-500'
+                <div className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-200 ${openIndex === index
+                  ? 'bg-indigo-100 text-indigo-600'
+                  : 'bg-gray-100 text-gray-500'
                   }`}>
                   {openIndex === index ? (
                     <FiChevronUp className="text-lg" />
@@ -101,15 +106,16 @@ const FAQ = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-50px" }}
           className="mt-12 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl p-8 text-center text-white"
+          style={{ willChange: "transform, opacity" }}
         >
           <HiOutlineSparkles className="text-3xl mx-auto mb-4 text-indigo-200" />
           <h3 className="text-2xl font-bold mb-2">Still have questions?</h3>
           <p className="text-indigo-100 mb-6">We are here to help! Reach out to us anytime.</p>
           <Link
             to="/feedback"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-indigo-600 rounded-xl font-semibold hover:bg-indigo-50 transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-indigo-600 rounded-xl font-semibold hover:bg-indigo-50 transition-colors duration-200"
           >
             Contact Support
             <FiArrowRight />

@@ -9,16 +9,27 @@ const Guide = () => {
   const [showOptionalSteps, setShowOptionalSteps] = useState(false)
   const [selectedBrowser, setSelectedBrowser] = useState('chrome')
 
+  // Animation variants for better performance
+  const fadeInUp = {
+    initial: { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: "-50px" }
+  }
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-indigo-50/30 via-white to-white">
+    <div className="min-h-screen bg-gradient-to-b from-indigo-50/30 via-white to-white relative overflow-hidden">
+      {/* Optimized Background Orbs - Static or subtle for performance */}
+      <div className="fixed inset-0 -z-10 pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-b from-indigo-50/50 via-white to-white" />
+        <div className="absolute top-[-10%] left-[10%] w-[30rem] h-[30rem] bg-indigo-200/20 rounded-full blur-[100px]" />
+        <div className="absolute bottom-[-10%] right-[10%] w-[25rem] h-[25rem] bg-purple-200/20 rounded-full blur-[100px]" />
+      </div>
+
       {/* Hero Section */}
-      <div className="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-400/20 rounded-full blur-3xl" />
-        <div className="absolute top-20 right-1/4 w-64 h-64 bg-purple-400/20 rounded-full blur-3xl" />
-        
+      <div className="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 mb-6"
           >
@@ -27,7 +38,7 @@ const Guide = () => {
           </motion.div>
           
           <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
             className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4"
@@ -35,7 +46,7 @@ const Guide = () => {
             Installation Guide
           </motion.h1>
           <motion.p 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
             className="text-xl text-gray-600 max-w-2xl mx-auto"
@@ -45,17 +56,17 @@ const Guide = () => {
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 relative z-10">
         {/* Browser Selection */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
           className="flex justify-center gap-4 mb-12"
         >
           <button
             onClick={() => setSelectedBrowser('chrome')}
-            className={`flex items-center gap-3 px-8 py-4 rounded-2xl font-semibold transition-all ${
+            className={`flex items-center gap-3 px-8 py-4 rounded-2xl font-semibold transition-all duration-200 ${
               selectedBrowser === 'chrome'
                 ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/25'
                 : 'bg-white text-gray-600 border-2 border-gray-200 hover:border-indigo-200'
@@ -66,7 +77,7 @@ const Guide = () => {
           </button>
           <button
             onClick={() => setSelectedBrowser('firefox')}
-            className={`flex items-center gap-3 px-8 py-4 rounded-2xl font-semibold transition-all ${
+            className={`flex items-center gap-3 px-8 py-4 rounded-2xl font-semibold transition-all duration-200 ${
               selectedBrowser === 'firefox'
                 ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/25'
                 : 'bg-white text-gray-600 border-2 border-gray-200 hover:border-indigo-200'
@@ -79,13 +90,12 @@ const Guide = () => {
 
         <div className="space-y-6">
           {selectedBrowser === 'chrome' ? (
-            <>
+            <div className="space-y-6">
               {/* Step 1: Store Link */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="relative bg-white rounded-3xl border border-gray-100 p-8 shadow-sm hover:shadow-xl transition-all overflow-hidden group"
+                {...fadeInUp}
+                className="relative bg-white rounded-3xl border border-gray-100 p-8 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group"
+                style={{ willChange: "transform, opacity" }}
               >
                 <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity -translate-y-1/2 translate-x-1/2" />
                 
@@ -107,7 +117,7 @@ const Guide = () => {
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="px-8 py-4 rounded-xl inline-flex items-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold shadow-lg shadow-indigo-500/25 hover:shadow-xl transition-all"
+                      className="px-8 py-4 rounded-xl inline-flex items-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold shadow-lg shadow-indigo-500/25 transition-all"
                     >
                       Open Chrome Web Store
                       <FiArrowRight />
@@ -118,10 +128,9 @@ const Guide = () => {
 
               {/* Step 2: Pin Extension */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="relative bg-white rounded-3xl border border-gray-100 p-8 shadow-sm hover:shadow-xl transition-all"
+                {...fadeInUp}
+                className="relative bg-white rounded-3xl border border-gray-100 p-8 shadow-sm hover:shadow-xl transition-all duration-300"
+                style={{ willChange: "transform, opacity" }}
               >
                 <div className="flex items-start gap-6">
                   <div className="shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white shadow-lg shadow-amber-500/25">
@@ -142,15 +151,14 @@ const Guide = () => {
                   </div>
                 </div>
               </motion.div>
-            </>
+            </div>
           ) : (
-            <>
+            <div className="space-y-6">
               {/* Firefox Manual Setup */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="relative bg-white rounded-3xl border border-gray-100 p-8 shadow-sm hover:shadow-xl transition-all overflow-hidden group"
+                {...fadeInUp}
+                className="relative bg-white rounded-3xl border border-gray-100 p-8 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group"
+                style={{ willChange: "transform, opacity" }}
               >
                 <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity -translate-y-1/2 translate-x-1/2" />
                 
@@ -173,7 +181,7 @@ const Guide = () => {
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
-                        className="px-6 py-3 rounded-xl inline-flex items-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold shadow-lg shadow-indigo-500/25 hover:shadow-xl transition-all"
+                        className="px-6 py-3 rounded-xl inline-flex items-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold shadow-lg shadow-indigo-500/25 transition-all"
                       >
                         <SiFirefox className="text-xl" />
                         Download for Firefox
@@ -194,10 +202,9 @@ const Guide = () => {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="relative bg-white rounded-3xl border border-gray-100 p-8 shadow-sm hover:shadow-xl transition-all"
+                {...fadeInUp}
+                className="relative bg-white rounded-3xl border border-gray-100 p-8 shadow-sm hover:shadow-xl transition-all duration-300"
+                style={{ willChange: "transform, opacity" }}
               >
                 <div className="flex items-start gap-6">
                   <div className="shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white shadow-lg shadow-amber-500/25">
@@ -226,15 +233,14 @@ const Guide = () => {
                   </div>
                 </div>
               </motion.div>
-            </>
+            </div>
           )}
 
           {/* Success Message */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-gradient-to-r from-emerald-500 to-green-600 rounded-3xl p-8 text-white"
+            {...fadeInUp}
+            className="bg-gradient-to-r from-emerald-500 to-green-600 rounded-3xl p-8 text-white shadow-lg shadow-emerald-500/20"
+            style={{ willChange: "transform, opacity" }}
           >
             <div className="flex items-center gap-4">
               <div className="shrink-0 w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center">
@@ -257,7 +263,7 @@ const Guide = () => {
           >
             <button
               onClick={() => setShowOptionalSteps(!showOptionalSteps)}
-              className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-semibold group"
+              className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-semibold group transition-colors duration-200"
             >
               {showOptionalSteps ? (
                 <>
@@ -277,10 +283,9 @@ const Guide = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="space-y-6"
+              className="space-y-6 overflow-hidden"
             >
-              {/* Step 3: API Setup */}
-              <div className="relative bg-gray-50 rounded-3xl border border-gray-100 p-8">
+              <div className="relative bg-gray-50 rounded-3xl border border-gray-100 p-8 shadow-inner">
                 <div className="flex items-start gap-6">
                   <div className="shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-red-500 to-pink-600 flex items-center justify-center text-white">
                     <FiYoutube className="text-2xl" />
@@ -292,7 +297,7 @@ const Guide = () => {
                     <h2 className="text-xl font-bold text-gray-900 mb-3">Custom YouTube API Key</h2>
                     <p className="text-gray-600 mb-4">You can use your own API key to bypass daily limits:</p>
                     <ol className="space-y-2 text-gray-600">
-                      <li>1. Visit <a href="https://console.cloud.google.com/" className="text-indigo-600 hover:underline" target="_blank">Google Cloud Console</a></li>
+                      <li>1. Visit <a href="https://console.cloud.google.com/" className="text-indigo-600 hover:underline transition-colors duration-200" target="_blank" rel="noopener noreferrer">Google Cloud Console</a></li>
                       <li>2. Enable the YouTube Data API v3</li>
                       <li>3. Create an API Key and paste it into RecFix settings</li>
                     </ol>
@@ -304,10 +309,9 @@ const Guide = () => {
 
           {/* Support */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            {...fadeInUp}
             className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl p-8 border border-amber-100"
+            style={{ willChange: "transform, opacity" }}
           >
             <div className="flex items-start gap-4">
               <div className="shrink-0 w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center">
@@ -328,7 +332,7 @@ const Guide = () => {
                 <div className="mt-6">
                   <Link 
                     to="/feedback" 
-                    className="inline-flex items-center gap-2 text-amber-700 hover:text-amber-800 font-semibold"
+                    className="inline-flex items-center gap-2 text-amber-700 hover:text-amber-800 font-semibold transition-colors duration-200"
                   >
                     Need help? Contact support
                     <FiArrowRight />

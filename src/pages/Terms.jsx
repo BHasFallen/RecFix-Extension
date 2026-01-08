@@ -52,12 +52,16 @@ const Terms = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-indigo-50/30 via-white to-white">
-      {/* Hero Section */}
-      <div className="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-400/20 rounded-full blur-3xl" />
-        <div className="absolute top-20 right-1/4 w-64 h-64 bg-purple-400/20 rounded-full blur-3xl" />
+    <div className="min-h-screen bg-gradient-to-b from-indigo-50/30 via-white to-white relative overflow-hidden">
+      {/* Optimized Background */}
+      <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-indigo-50/50 via-white to-white" />
+        <div className="absolute top-[-10%] left-[10%] w-[30rem] h-[30rem] bg-indigo-200/20 rounded-full blur-[100px]" />
+        <div className="absolute bottom-[-10%] right-[10%] w-[25rem] h-[25rem] bg-purple-200/20 rounded-full blur-[100px]" />
+      </div>
 
+      {/* Hero Section */}
+      <div className="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -79,137 +83,91 @@ const Terms = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-lg text-gray-500"
+            className="text-xl text-gray-600 max-w-2xl mx-auto"
           >
-            Last updated: January 2026
+            Last transparency update: January 2026
           </motion.p>
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
-        {/* Sections */}
-        <div className="space-y-6">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 relative z-10">
+        <div className="grid gap-8">
           {sections.map((section, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
-              className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm"
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: index * 0.1 }}
+              className="relative"
+              style={{ willChange: "transform, opacity" }}
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${section.isRestriction ? 'bg-red-100 text-red-600' : 'bg-indigo-100 text-indigo-600'
-                  }`}>
-                  {section.icon}
+              <div className={`p-8 bg-white/50 backdrop-blur-sm rounded-3xl border ${section.isRestriction ? 'border-amber-100 hover:border-amber-200' : 'border-gray-100 hover:border-indigo-100'} shadow-sm hover:shadow-xl transition-all duration-300`}>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${section.isRestriction ? 'bg-amber-100 text-amber-600' : 'bg-indigo-100 text-indigo-600'}`}>
+                    {section.icon}
+                  </div>
+                  <h2 className="text-2xl font-bold text-gray-900">{section.title}</h2>
                 </div>
-                <h2 className="text-xl font-bold text-gray-900">{section.title}</h2>
-              </div>
 
-              {section.content && (
-                <p className="text-gray-600 leading-relaxed">{section.content}</p>
-              )}
+                <div className="space-y-4">
+                  {section.content && <p className="text-gray-600 leading-relaxed">{section.content}</p>}
 
-              {section.subsections && section.subsections.map((sub, i) => (
-                <div key={i} className="mt-4 bg-gray-50 rounded-2xl p-5">
-                  <h3 className="font-semibold text-gray-900 mb-3">{sub.subtitle}</h3>
-                  <ul className="space-y-2">
-                    {sub.items.map((item, j) => (
-                      <li key={j} className="flex items-start gap-3 text-gray-600">
-                        <span className="text-emerald-500 mt-0.5">✓</span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-
-              {section.items && (
-                <ul className="space-y-3 mt-4">
-                  {section.items.map((item, i) => (
-                    <li key={i} className="flex items-start gap-3 text-gray-600">
-                      <span className={section.isRestriction ? 'text-red-500' : 'text-emerald-500'}>
-                        {section.isRestriction ? '✗' : '✓'}
-                      </span>
-                      {item}
-                    </li>
+                  {section.subsections && section.subsections.map((sub, i) => (
+                    <div key={i} className="space-y-3">
+                      <h3 className="font-semibold text-gray-900">{sub.subtitle}</h3>
+                      <ul className="grid sm:grid-cols-2 gap-3">
+                        {sub.items.map((item, j) => (
+                          <li key={j} className="flex items-start gap-2 text-gray-600 text-sm">
+                            <FiCheck className="mt-1 text-emerald-500 shrink-0" /> {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   ))}
-                </ul>
-              )}
 
-              {section.highlight && (
-                <div className="mt-6 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 rounded-2xl p-5 border border-indigo-100">
-                  <p className="text-gray-700 font-semibold flex items-center gap-2">
-                    {section.highlight.icon}
-                    {section.highlight.text}
-                  </p>
+                  {section.items && (
+                    <ul className="grid sm:grid-cols-2 gap-3 mt-4">
+                      {section.items.map((item, i) => (
+                        <li key={i} className="flex items-start gap-2 text-gray-600 text-sm">
+                          <span className={section.isRestriction ? "text-amber-500" : "text-indigo-500"}>•</span>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+
+                  {section.highlight && (
+                    <div className="mt-6 flex items-center gap-3 p-4 bg-amber-50 rounded-2xl border border-amber-100 text-amber-700 font-medium">
+                      {section.highlight.icon}
+                      <p>{section.highlight.text}</p>
+                    </div>
+                  )}
                 </div>
-              )}
+              </div>
             </motion.div>
           ))}
-
-          {/* Disclaimers */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-gray-50 rounded-3xl p-8"
-          >
-            <h2 className="text-xl font-bold text-gray-900 mb-4">Disclaimer of Warranties</h2>
-            <p className="text-gray-600 mb-4">
-              RecFix is provided "as is" without any warranties. We do not guarantee that:
-            </p>
-            <ul className="space-y-2 text-gray-600">
-              <li className="flex items-start gap-3"><span className="text-gray-400">•</span>The extension will always function error-free</li>
-              <li className="flex items-start gap-3"><span className="text-gray-400">•</span>Recommendations will improve to your satisfaction</li>
-              <li className="flex items-start gap-3"><span className="text-gray-400">•</span>YouTube's API services will always be available</li>
-            </ul>
-          </motion.div>
-
-          {/* Liability & Termination */}
-          <div className="grid md:grid-cols-2 gap-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-2xl p-6 border border-gray-100"
-            >
-              <h3 className="font-bold text-gray-900 mb-3">Limitation of Liability</h3>
-              <p className="text-gray-600 text-sm">
-                We shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of the extension.
-              </p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-2xl p-6 border border-gray-100"
-            >
-              <h3 className="font-bold text-gray-900 mb-3">Termination</h3>
-              <p className="text-gray-600 text-sm">
-                We may terminate or suspend your access to RecFix immediately, without prior notice, for conduct that violates these Terms.
-              </p>
-            </motion.div>
-          </div>
-
-          {/* Contact */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-3xl p-8 border border-indigo-100"
-          >
-            <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
-              <FiMail className="text-indigo-600" />
-              Contact Information
-            </h3>
-            <p className="text-gray-600 mb-4">For any questions about these Terms, please contact us:</p>
-            <div className="text-gray-600 space-y-1">
-              <p>Email: <a href="mailto:recfixyt@gmail.com" className="text-indigo-600 hover:underline">recfixyt@gmail.com</a></p>
-              <p>GitHub: <a href="https://github.com/BHasFallen" className="text-indigo-600 hover:underline">github.com/BHasFallen</a></p>
-            </div>
-          </motion.div>
         </div>
+
+        {/* Contact info in terms */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-16 bg-gradient-to-br from-indigo-600 to-purple-700 rounded-3xl p-8 md:p-12 text-center text-white"
+          style={{ willChange: "transform, opacity" }}
+        >
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 relative z-10">Need Clarification?</h2>
+          <p className="text-indigo-100 mb-8 max-w-2xl mx-auto relative z-10">We're committed to being transparent about our terms. If anything is unclear, don't hesitate to reach out.</p>
+          <div className="flex flex-wrap justify-center gap-4 relative z-10">
+            <a href="mailto:recfixyt@gmail.com" className="flex items-center gap-2 px-6 py-3 bg-white text-indigo-600 rounded-xl font-bold transition-all duration-200">
+              <FiMail /> Contact Us
+            </a>
+            <a href="https://github.com/BHasFallen" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 rounded-xl font-bold transition-all duration-200">
+              <FiShield /> GitHub Profile
+            </a>
+          </div>
+        </motion.div>
       </div>
     </div>
   )

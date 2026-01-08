@@ -12,35 +12,30 @@ const Home = () => {
   const navigate = useNavigate()
   const containerRef = useRef(null)
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  })
-
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
-
   const CHROME_STORE_URL = "https://chromewebstore.google.com/detail/recfix/eicddedljgibgkpnbmfimmicdndhlpna"
 
   return (
     <div ref={containerRef} className="relative overflow-hidden">
-      {/* Animated Background */}
-      <div className="fixed inset-0 -z-10">
+      {/* Optimized Background */}
+      <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-indigo-50/50 via-white to-white" />
         <motion.div
-          className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-400/20 rounded-full blur-3xl"
+          className="absolute top-[-10%] left-[10%] w-[30rem] h-[30rem] bg-indigo-200/30 rounded-full blur-[80px]"
+          style={{ willChange: "transform" }}
           animate={{
-            x: [0, 100, 0],
-            y: [0, 50, 0],
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        />
-        <motion.div
-          className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-400/20 rounded-full blur-3xl"
-          animate={{
-            x: [0, -80, 0],
-            y: [0, -60, 0],
+            x: [0, 40, 0],
+            y: [0, 30, 0],
           }}
           transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+        />
+        <motion.div
+          className="absolute bottom-[-10%] right-[10%] w-[25rem] h-[25rem] bg-purple-200/30 rounded-full blur-[80px]"
+          style={{ willChange: "transform" }}
+          animate={{
+            x: [0, -40, 0],
+            y: [0, -30, 0],
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
         />
       </div>
 
@@ -75,6 +70,7 @@ const Home = () => {
               </span>
               <motion.span
                 className="absolute -right-8 -top-4 text-3xl"
+                style={{ willChange: "transform" }}
                 animate={{ rotate: [0, 10, -10, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
@@ -183,8 +179,9 @@ const Home = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             className="text-center mb-16"
+            style={{ willChange: "transform, opacity" }}
           >
             <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
               How it works
@@ -200,9 +197,10 @@ const Home = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: 0.1 }}
               className="lg:col-span-2 group relative bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:border-indigo-200 transition-all duration-300 overflow-hidden"
+              style={{ willChange: "transform, opacity" }}
             >
               <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-full blur-3xl opacity-50 group-hover:opacity-80 transition-opacity -translate-y-1/2 translate-x-1/2" />
               <div className="relative z-10">
@@ -221,9 +219,10 @@ const Home = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: 0.2 }}
               className="group relative bg-gradient-to-br from-indigo-600 to-purple-700 rounded-3xl p-8 overflow-hidden"
+              style={{ willChange: "transform, opacity" }}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent" />
               <div className="relative z-10">
@@ -242,9 +241,10 @@ const Home = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: 0.3 }}
               className="group relative bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:border-indigo-200 transition-all duration-300"
+              style={{ willChange: "transform, opacity" }}
             >
               <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 text-white mb-6">
                 <FiZap className="text-2xl" />
@@ -303,8 +303,9 @@ const Home = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-50px" }}
                 className="text-center mb-12"
+                style={{ willChange: "transform, opacity" }}
               >
                 <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-indigo-500/20 border border-indigo-500/30 mb-6">
                   <FiShield className="text-4xl text-indigo-400" />
@@ -327,9 +328,10 @@ const Home = () => {
                     key={i}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, margin: "-50px" }}
                     transition={{ delay: 0.1 * i }}
                     className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-center hover:bg-white/10 transition-colors"
+                    style={{ willChange: "transform, opacity" }}
                   >
                     <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-indigo-500/20 text-indigo-300 mb-4">
                       {item.icon}
@@ -350,7 +352,8 @@ const Home = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
+            style={{ willChange: "transform, opacity" }}
           >
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6">
               Ready for a better

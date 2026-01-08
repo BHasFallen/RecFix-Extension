@@ -3,21 +3,19 @@ import { FiYoutube, FiShield, FiSettings } from 'react-icons/fi'
 import { BiAnalyse, BiFilterAlt } from 'react-icons/bi'
 import { HiOutlineLightningBolt } from 'react-icons/hi'
 
-// Showcase 0: Header Image
+// Optimized Showcase Components
 const HeaderShowcase = () => {
   return (
     <div className="h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900 p-8 flex items-center justify-center overflow-hidden relative">
-      {/* Background Animation */}
-      <div className="absolute inset-0 opacity-20">
+      <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(79,70,229,0.25),transparent_50%)]" />
       </div>
-      
+
       <div className="relative z-10 text-center">
-        {/* Logo */}
-        <motion.div 
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ type: "spring", duration: 1 }}
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.6 }}
           className="mb-8"
         >
           <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 inline-block">
@@ -27,72 +25,39 @@ const HeaderShowcase = () => {
           </div>
         </motion.div>
 
-        {/* Title */}
-        <motion.h1 
-          initial={{ y: 20, opacity: 0 }}
+        <motion.h1
+          initial={{ y: 10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="text-7xl font-bold text-white mb-6 font-clash"
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="text-5xl md:text-7xl font-bold text-white mb-6 font-clash"
         >
           RecFix
         </motion.h1>
 
-        {/* Motto */}
-        <motion.p 
-          initial={{ y: 20, opacity: 0 }}
+        <motion.p
+          initial={{ y: 10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="text-2xl text-indigo-200 mb-8 font-cabinet max-w-2xl mx-auto"
+          transition={{ delay: 0.3, duration: 0.5 }}
+          className="text-xl md:text-2xl text-indigo-200 mb-8 font-cabinet max-w-2xl mx-auto"
         >
           Take Control of Your YouTube Feed with AI-Powered Recommendation Enhancement
         </motion.p>
-
-        {/* Feature Pills */}
-        <motion.div 
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.6 }}
-          className="flex flex-wrap justify-center gap-4"
-        >
-          <div className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-indigo-200 flex items-center gap-2">
-            <BiAnalyse />
-            Smart Analysis
-          </div>
-          <div className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-indigo-200 flex items-center gap-2">
-            <BiFilterAlt />
-            Custom Filters
-          </div>
-          <div className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-indigo-200 flex items-center gap-2">
-            <FiShield />
-            Privacy First
-          </div>
-        </motion.div>
       </div>
 
-      {/* Decorative Elements */}
+      {/* Simplified Background Elements */}
       <motion.div
-        animate={{ 
-          rotate: 360,
-          scale: [1, 1.2, 1]
-        }}
-        transition={{ 
-          rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-          scale: { duration: 5, repeat: Infinity, ease: "easeInOut" }
-        }}
-        className="absolute top-1/4 right-1/4 text-indigo-500/20 text-[200px]"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        className="absolute top-1/4 right-1/4 text-indigo-500/10 text-[150px] pointer-events-none"
+        style={{ willChange: "transform" }}
       >
         <FiYoutube />
       </motion.div>
       <motion.div
-        animate={{ 
-          rotate: -360,
-          scale: [1, 1.3, 1]
-        }}
-        transition={{ 
-          rotate: { duration: 25, repeat: Infinity, ease: "linear" },
-          scale: { duration: 6, repeat: Infinity, ease: "easeInOut" }
-        }}
-        className="absolute bottom-1/4 left-1/4 text-purple-500/20 text-[150px]"
+        animate={{ rotate: -360 }}
+        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+        className="absolute bottom-1/4 left-1/4 text-purple-500/10 text-[120px] pointer-events-none"
+        style={{ willChange: "transform" }}
       >
         <BiAnalyse />
       </motion.div>
@@ -100,180 +65,129 @@ const HeaderShowcase = () => {
   )
 }
 
-// Showcase 1: Main Feature Highlight
 const FeatureShowcase = () => {
   return (
-    <div className="h-screen bg-gradient-to-b from-gray-50 to-white p-8 flex items-center justify-center">
-      <div className="max-w-6xl w-full bg-white rounded-2xl shadow-xl overflow-hidden">
-        <div className="p-8">
-          {/* Header */}
-          <div className="flex items-center gap-4 mb-8">
-            <div className="bg-indigo-100 p-3 rounded-full">
+    <div className="min-h-screen bg-gray-50 p-8 flex items-center justify-center">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        className="max-w-6xl w-full bg-white rounded-3xl shadow-xl overflow-hidden"
+        style={{ willChange: "transform, opacity" }}
+      >
+        <div className="p-8 md:p-12">
+          <div className="flex items-center gap-4 mb-12">
+            <div className="bg-indigo-100 p-3 rounded-2xl">
               <FiYoutube className="text-4xl text-indigo-600" />
             </div>
-            <h1 className="text-3xl font-bold">RecFix for YouTube</h1>
+            <h2 className="text-3xl font-bold text-gray-900 font-clash">RecFix for YouTube</h2>
           </div>
 
-          {/* Main Content */}
-          <div className="grid grid-cols-2 gap-8">
-            {/* Left: Feature Description */}
-            <div className="space-y-6">
-              <h2 className="text-4xl font-bold text-gray-900">
-                Take Control of Your YouTube Feed
-              </h2>
-              <p className="text-xl text-gray-600">
+          <div className="grid lg:grid-cols-2 gap-12">
+            <div className="space-y-8">
+              <h3 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight font-clash">
+                Take Control of Your <br /><span className="text-indigo-600">YouTube Feed</span>
+              </h3>
+              <p className="text-xl text-gray-600 leading-relaxed">
                 Analyze, filter, and improve your recommendations with powerful AI-driven insights.
               </p>
-              <div className="flex gap-4">
-                <div className="bg-indigo-50 p-4 rounded-xl">
-                  <div className="text-2xl font-bold text-indigo-600">10,547+</div>
-                  <div className="text-gray-600">Active Users</div>
+              <div className="flex gap-6">
+                <div className="bg-indigo-50 p-6 rounded-2xl border border-indigo-100 flex-1">
+                  <div className="text-3xl font-bold text-indigo-600 mb-1">24,000+</div>
+                  <div className="text-gray-600 font-medium">Active Users</div>
                 </div>
-                <div className="bg-purple-50 p-4 rounded-xl">
-                  <div className="text-2xl font-bold text-purple-600">156,832+</div>
-                  <div className="text-gray-600">Recommendations Fixed</div>
+                <div className="bg-purple-50 p-6 rounded-2xl border border-purple-100 flex-1">
+                  <div className="text-3xl font-bold text-purple-600 mb-1">150k+</div>
+                  <div className="text-gray-600 font-medium">Fixed Feeds</div>
                 </div>
               </div>
             </div>
 
-            {/* Right: Visual Demo */}
-            <div className="bg-gray-50 rounded-xl p-6">
+            <div className="bg-gray-50 rounded-3xl p-8 border border-gray-100">
               <div className="grid grid-cols-2 gap-4">
                 {[1, 2, 3, 4].map((item) => (
-                  <div key={item} className="bg-white rounded-lg shadow-sm p-3">
-                    <div className="aspect-video bg-gray-100 rounded-lg mb-2 flex items-center justify-center">
-                      <FiYoutube className="text-2xl text-gray-400" />
+                  <div key={item} className="bg-white rounded-xl shadow-sm p-3">
+                    <div className="aspect-video bg-gray-100 rounded-lg mb-3 flex items-center justify-center">
+                      <FiYoutube className="text-2xl text-gray-300" />
                     </div>
-                    <div className="h-4 bg-gray-100 rounded w-3/4 mb-2"></div>
-                    <div className="h-3 bg-gray-100 rounded w-1/2"></div>
+                    <div className="h-3 bg-gray-100 rounded-full w-3/4 mb-2"></div>
+                    <div className="h-2.5 bg-gray-100 rounded-full w-1/2"></div>
                   </div>
                 ))}
               </div>
-              <div className="mt-4">
-                <div className="flex justify-between text-sm mb-1">
-                  <span>Analyzing feed...</span>
-                  <span>67%</span>
+              <div className="mt-8">
+                <div className="flex justify-between text-sm font-semibold text-gray-600 mb-2">
+                  <span>AI Analysis...</span>
+                  <span>85%</span>
                 </div>
-                <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                  <div className="h-full w-2/3 bg-indigo-600 rounded-full"></div>
+                <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: '85%' }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.5, ease: "easeOut" }}
+                    className="h-full bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full"
+                  />
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   )
 }
 
-// Showcase 2: Features Grid
-const FeaturesShowcase = () => {
-  const features = [
-    {
-      icon: <BiAnalyse />,
-      title: "Smart Analysis",
-      description: "AI-powered analysis of your YouTube recommendations"
-    },
-    {
-      icon: <BiFilterAlt />,
-      title: "Custom Filters",
-      description: "Filter out unwanted content and boost what you love"
-    },
-    {
-      icon: <FiSettings />,
-      title: "Easy Setup",
-      description: "Simple one-click installation and configuration"
-    },
-    {
-      icon: <FiShield />,
-      title: "Privacy First",
-      description: "Your data never leaves your browser"
-    }
-  ]
-
-  return (
-    <div className="h-screen bg-gradient-to-b from-gray-50 to-white p-8 flex items-center justify-center">
-      <div className="max-w-6xl w-full bg-white rounded-2xl shadow-xl p-8">
-        <h2 className="text-3xl font-bold text-center mb-12">
-          Powerful Features for Better Recommendations
-        </h2>
-        <div className="grid grid-cols-2 gap-8">
-          {features.map((feature, index) => (
-            <div key={index} className="bg-gray-50 rounded-xl p-6 flex gap-4">
-              <div className="bg-indigo-100 p-3 rounded-full h-fit">
-                <div className="text-2xl text-indigo-600">{feature.icon}</div>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  )
-}
-
-// Showcase 3: Privacy Focus
 const PrivacyShowcase = () => {
   return (
-    <div className="h-screen bg-gradient-to-b from-gray-900 to-indigo-900 p-8 flex items-center justify-center text-white">
-      <div className="max-w-6xl w-full bg-gray-800/50 backdrop-blur-lg rounded-2xl shadow-xl p-8">
-        <div className="text-center mb-12">
-          <div className="bg-indigo-500/20 p-4 rounded-full w-fit mx-auto mb-6">
-            <FiShield className="text-4xl text-indigo-400" />
+    <div className="min-h-screen bg-gray-900 p-8 flex items-center justify-center text-white overflow-hidden relative">
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_30%,rgba(79,70,229,0.1),transparent_50%)]" />
+
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        className="max-w-6xl w-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-16 relative z-10"
+        style={{ willChange: "transform, opacity" }}
+      >
+        <div className="text-center mb-16">
+          <div className="bg-indigo-500/20 p-5 rounded-3xl w-fit mx-auto mb-8 border border-indigo-500/30">
+            <FiShield className="text-5xl text-indigo-400" />
           </div>
-          <h2 className="text-4xl font-bold mb-4">Your Privacy Matters</h2>
-          <p className="text-xl text-indigo-200">
-            All data processing happens locally in your browser
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 font-clash">Your Privacy Matters</h2>
+          <p className="text-xl text-indigo-200 max-w-2xl mx-auto">
+            RecFix processes every single piece of data locally in your browser. Nothing ever leaves your device.
           </p>
         </div>
 
-        <div className="grid grid-cols-3 gap-8">
-          <div className="bg-gray-800/50 rounded-xl p-6">
-            <div className="bg-indigo-500/20 p-3 rounded-full w-fit mb-4">
-              <HiOutlineLightningBolt className="text-2xl text-indigo-400" />
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            { icon: <HiOutlineLightningBolt />, title: "Local Processing", desc: "Analysis happens right on your device" },
+            { icon: <FiShield />, title: "Zero Tracking", desc: "We never store or share your data" },
+            { icon: <FiSettings />, title: "Secure Storage", desc: "Your keys are stored encrypted locally" }
+          ].map((item, i) => (
+            <div key={i} className="bg-white/5 rounded-2xl p-8 border border-white/5 hover:bg-white/10 transition-colors duration-300">
+              <div className="bg-indigo-500/20 p-3 rounded-xl w-fit mb-6 text-indigo-400 text-2xl">
+                {item.icon}
+              </div>
+              <h3 className="text-xl font-bold mb-3">{item.title}</h3>
+              <p className="text-gray-400 leading-relaxed">{item.desc}</p>
             </div>
-            <h3 className="text-xl font-semibold mb-2">Local Processing</h3>
-            <p className="text-gray-300">
-              All recommendation analysis happens right in your browser
-            </p>
-          </div>
-          <div className="bg-gray-800/50 rounded-xl p-6">
-            <div className="bg-indigo-500/20 p-3 rounded-full w-fit mb-4">
-              <FiShield className="text-2xl text-indigo-400" />
-            </div>
-            <h3 className="text-xl font-semibold mb-2">No Data Collection</h3>
-            <p className="text-gray-300">
-              We never store or transmit your personal data
-            </p>
-          </div>
-          <div className="bg-gray-800/50 rounded-xl p-6">
-            <div className="bg-indigo-500/20 p-3 rounded-full w-fit mb-4">
-              <FiSettings className="text-2xl text-indigo-400" />
-            </div>
-            <h3 className="text-xl font-semibold mb-2">Secure Storage</h3>
-            <p className="text-gray-300">
-              Your preferences are stored securely on your device
-            </p>
-          </div>
+          ))}
         </div>
-      </div>
+      </motion.div>
     </div>
   )
 }
 
-// Main Showcase Component
 const Showcase = () => {
   return (
-    <div>
+    <div className="bg-white">
       <HeaderShowcase />
       <FeatureShowcase />
-      <FeaturesShowcase />
       <PrivacyShowcase />
     </div>
   )
 }
 
-export default Showcase 
+export default Showcase
