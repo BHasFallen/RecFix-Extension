@@ -19,6 +19,8 @@ const Home = () => {
 
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
 
+  const CHROME_STORE_URL = "https://chromewebstore.google.com/detail/recfix/eicddedljgibgkpnbmfimmicdndhlpna"
+
   return (
     <div ref={containerRef} className="relative overflow-hidden">
       {/* Animated Background */}
@@ -54,7 +56,7 @@ const Home = () => {
           >
             <HiOutlineSparkles className="text-indigo-400" />
             <span className="text-sm font-medium bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-              Now available on Chrome Web Store
+              Official Chrome Web Store App
             </span>
           </motion.div>
 
@@ -99,30 +101,29 @@ const Home = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
           >
-            <motion.button
-              onClick={() => navigate('/guide')}
+            <motion.a
+              href={CHROME_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.02, boxShadow: "0 20px 40px -15px rgba(79, 70, 229, 0.4)" }}
               whileTap={{ scale: 0.98 }}
               className="group relative px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-2xl font-semibold text-lg shadow-xl shadow-indigo-500/25 overflow-hidden"
             >
               <span className="relative z-10 flex items-center gap-3">
                 <FiChrome className="text-xl" />
-                Get RecFix Free
+                Add to Chrome - It's Free
                 <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
               </span>
-            </motion.button>
+            </motion.a>
 
-            <motion.a
-              href="https://ko-fi.com/bobbydxl"
-              target="_blank"
-              rel="noopener noreferrer"
+            <motion.button
+              onClick={() => navigate('/guide')}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="px-8 py-4 bg-white border-2 border-gray-200 text-gray-700 rounded-2xl font-semibold text-lg hover:border-indigo-300 hover:bg-indigo-50/50 transition-all flex items-center gap-3"
             >
-              <FiCoffee className="text-xl text-amber-500" />
-              Buy me a coffee
-            </motion.a>
+              How to Install
+            </motion.button>
           </motion.div>
 
           {/* Social Proof */}
@@ -136,9 +137,9 @@ const Home = () => {
               <div className="flex -space-x-2">
                 {[...Array(4)].map((_, i) => (
                   <div key={i} className={`w-8 h-8 rounded-full border-2 border-white bg-gradient-to-br ${i === 0 ? 'from-indigo-400 to-indigo-600' :
-                      i === 1 ? 'from-purple-400 to-purple-600' :
-                        i === 2 ? 'from-pink-400 to-pink-600' :
-                          'from-blue-400 to-blue-600'
+                    i === 1 ? 'from-purple-400 to-purple-600' :
+                      i === 2 ? 'from-pink-400 to-pink-600' :
+                        'from-blue-400 to-blue-600'
                     }`} />
                 ))}
               </div>
@@ -274,15 +275,17 @@ const Home = () => {
                     Love your new recommendations? Save them directly to a YouTube playlist with one click.
                   </p>
                 </div>
-                <motion.button
-                  onClick={() => navigate('/guide')}
+                <motion.a
+                  href={CHROME_STORE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="shrink-0 px-6 py-3 bg-white text-gray-900 rounded-xl font-semibold flex items-center gap-2 hover:bg-gray-100 transition-colors"
                 >
                   Try it now
                   <FiArrowRight />
-                </motion.button>
+                </motion.a>
               </div>
             </motion.div>
           </div>
@@ -361,19 +364,26 @@ const Home = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <motion.button
-                onClick={() => navigate('/guide')}
+              <motion.a
+                href={CHROME_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.02, boxShadow: "0 25px 50px -12px rgba(79, 70, 229, 0.35)" }}
                 whileTap={{ scale: 0.98 }}
                 className="group px-10 py-5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-2xl font-semibold text-lg shadow-xl shadow-indigo-500/25 flex items-center gap-3"
               >
-                <div className="flex items-center gap-1">
-                  <FiChrome className="text-xl" />
-                  <span className="text-white/50">/</span>
-                  <SiFirefox className="text-xl" />
-                </div>
-                Install RecFix
+                <FiChrome className="text-2xl" />
+                Add to Chrome - It's Free
                 <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
+              </motion.a>
+
+              <motion.button
+                onClick={() => navigate('/guide')}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="px-10 py-5 bg-white border-2 border-gray-200 text-gray-700 rounded-2xl font-semibold text-lg hover:border-indigo-300 hover:bg-indigo-50/50 transition-all flex items-center gap-3"
+              >
+                Installation Guide
               </motion.button>
             </div>
 
