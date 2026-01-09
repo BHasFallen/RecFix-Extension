@@ -47,11 +47,11 @@ const Home = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 mb-8"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 mb-8 mt-5"
           >
             <HiOutlineSparkles className="text-indigo-400" />
             <span className="text-sm font-medium bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-              Official Chrome Web Store App
+              v2.4 Now Live • Intelligence Engine + Shorts Control
             </span>
           </motion.div>
 
@@ -86,8 +86,8 @@ const Home = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Take control of your recommendations. Scan, select, and transform
-            your YouTube feed with AI-powered suggestions tailored to what you actually want to watch.
+            Taking control of your recommendations with <strong>Intelligence Engine v2.4</strong>.
+            Filter Shorts, break echo chambers, and discover fresh content tailored to you.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -221,20 +221,17 @@ const Home = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: 0.2 }}
-              className="group relative bg-gradient-to-br from-indigo-600 to-purple-700 rounded-3xl p-8 overflow-hidden"
+              className="group relative bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:border-indigo-200 transition-all duration-300"
               style={{ willChange: "transform, opacity" }}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent" />
-              <div className="relative z-10">
-                <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-sm text-white mb-6">
-                  <FiCheck className="text-2xl" />
-                </div>
-                <div className="text-sm font-semibold text-indigo-200 mb-2">Step 2</div>
-                <h3 className="text-2xl font-bold text-white mb-3">Select Favorites</h3>
-                <p className="text-indigo-100 text-lg leading-relaxed">
-                  Pick the videos that match your interests. These become the seeds for better recommendations.
-                </p>
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white mb-6">
+                <HiOutlineLightningBolt className="text-2xl" />
               </div>
+              <div className="text-sm font-semibold text-indigo-600 mb-2">Step 2</div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">Filter Shorts</h3>
+              <p className="text-gray-600 text-lg leading-relaxed">
+                Sick of 15-second clips? RecFix v2.4 includes a dedicated <strong>Shorts Blocker</strong>. Toggle it ON or OFF instantly.
+              </p>
             </motion.div>
 
             {/* Step 3 */}
@@ -252,7 +249,7 @@ const Home = () => {
               <div className="text-sm font-semibold text-green-600 mb-2">Step 3</div>
               <h3 className="text-2xl font-bold text-gray-900 mb-3">Fix Your Feed</h3>
               <p className="text-gray-600 text-lg leading-relaxed">
-                Click Fix Feed and watch as AI generates personalized recommendations.
+                Click Fix Feed and our AI silently swaps bad recommendations with diverse, high-quality videos—no page refresh needed.
               </p>
             </motion.div>
 
@@ -392,7 +389,7 @@ const Home = () => {
 
             <p className="mt-6 text-sm text-gray-500 flex items-center justify-center gap-2">
               <HiOutlineLightningBolt className="text-indigo-500" />
-              2 free fixes per day - No account required
+              5 free fixes per day - No account required
             </p>
           </motion.div>
         </div>

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { FiSend, FiGithub, FiMessageCircle, FiMail, FiArrowRight } from 'react-icons/fi'
+import { FiSend, FiMessageCircle, FiArrowRight } from 'react-icons/fi'
 import { HiOutlineSparkles } from 'react-icons/hi'
 import { useState, useEffect } from 'react'
 import emailjs from '@emailjs/browser'
@@ -65,25 +65,11 @@ const Feedback = () => {
 
   const contactOptions = [
     {
-      icon: <FiGithub className="text-2xl" />,
-      title: "GitHub Issues",
-      description: "Report bugs or request features through our repository",
-      link: "https://github.com/BHasFallen/RecFix-Extension-Chrome/issues/new",
-      color: "from-gray-700 to-gray-900"
-    },
-    {
       icon: <FiMessageCircle className="text-2xl" />,
-      title: "Discord Community",
-      description: "Join our community for real-time support",
-      link: "https://discord.com/invite/TQZauB99tD",
-      color: "from-indigo-500 to-purple-600"
-    },
-    {
-      icon: <FiMail className="text-2xl" />,
-      title: "Email Support",
-      description: "Send us an email for direct inquiries",
-      link: "mailto:recfixyt@gmail.com",
-      color: "from-emerald-500 to-teal-600"
+      title: "X (Twitter)",
+      description: "DM me for faster replies",
+      link: "https://x.com/@bobdontlikecode",
+      color: "from-gray-800 to-black"
     }
   ]
 
@@ -230,8 +216,8 @@ const Feedback = () => {
                 type="submit"
                 disabled={status.submitting}
                 className={`w-full py-4 rounded-xl flex items-center justify-center gap-2 font-bold text-white shadow-lg transition-all duration-300 ${status.submitting
-                    ? 'bg-gray-400 cursor-not-allowed'
-                    : 'bg-gradient-to-r from-indigo-600 to-purple-600 hover:shadow-indigo-500/25 active:scale-[0.98]'
+                  ? 'bg-gray-400 cursor-not-allowed'
+                  : 'bg-gradient-to-r from-indigo-600 to-purple-600 hover:shadow-indigo-500/25 active:scale-[0.98]'
                   }`}
               >
                 {status.submitting ? 'Sending...' : (
